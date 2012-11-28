@@ -7,10 +7,9 @@ function __construct() {
 
 }
 
-function getRecords() {
-	
-	
+function getAllDoctors($s="") {
+	$s.="select * from doctors where 1=1";
+	return $s;
 }
-
 
 } ?>
