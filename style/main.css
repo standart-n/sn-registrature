@@ -28,7 +28,7 @@ div#main {
 position:absolute;
 top:50px;
 left:50%;
-width:922px;
+width:924px;
 height:auto;
 margin:0 0 0 -460px;
 }
@@ -42,56 +42,98 @@ display:block;
 float:left;
 height:40px;
 width:100%;
-background:#333;
+background:#fcfcfc;
+border-bottom:#ccc solid 1px;
 z-index:1000;
 }
 
 div#content {
 display:block;
 float:left;
-width:920px;
-background:#ccc;
-border:#aaa solid 1px;
+width:924px;
+background:#fcfcfc;
+/*border:#eee solid 1px;*/
 }
 
 div#content-side {
 display:block;
 float:left;
-width:300px;
+width:215px;
 margin:5px;
 }
 
 div#content-primary {
 display:block;
 float:left;
-width:600px;
+width:680px;
 margin:5px;
 }
 
 div#content-side-calendar {
 display:block;
 float:left;
-width:300px;
-height:300px;
-background:#999;
+width:auto;
+height:auto;
+/*background:#fff;
+border:#ccc solid 1px;*/
 }
 
-div#content-side-doctors {
+div#content-side-docs {
 display:block;
 float:left;
-width:300px;
-height:600px;
-background:#999;
+width:215px;
+height:auto;
 margin:10px 0 0 0;
+padding:0 0 10px 0;
+border:#eee solid 1px;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
 }
 
-div#content-primary-timetable {
+div#content-primary-table {
 display:block;
 float:left;
-width:600px;
+width:680px;
 height:700px;
-background:#666;
+background:#fff;
+border:#ccc solid 1px;
+-moz-border-radius:3px;
+-webkit-border-radius:3px;
+border-radius:3px;
 }
+
+div#content-side-docs h3 {
+font-family:Verdana;
+font-size:18px;
+color:#333;
+margin:5px 0 0 0;
+padding:0 0 0 10px;
+}
+
+div#content-side-docs-list {
+display:block;
+float:left;
+margin:5px 0 0 5px;
+}
+
+.content-side-docs-list-link:hover {
+color:#ff0000;
+}
+
+.content-side-docs-list-link {
+font-family:Verdana;
+font-size:14px;
+color:#024;
+display:block;
+float:left;
+clear:both;
+margin:5px 0 0 0;
+padding:0 0 0 5px;
+text-decoration:underline;
+}
+
+
 
 
 
@@ -108,6 +150,9 @@ padding:30px 0 0 0;
 
 
 
+#datepicker{
+font-size:70%;
+}
 
 
 a#logo {
