@@ -12,32 +12,34 @@
 				switch (href.replace(/(.*)#(.*)/,"$2")){
 					case "autoload":
 						var sn=$(this).data('sn');
+						$(this).snTriggers('doctors');
 						$(this).snTriggers('calendar');
 					break;
-					case "checkCard":
-						var card_val=$("#bonus-area-input input").val();
-						alert(card_val);
-						//$(this).snAjax('sendRequest',{'action':'show','card':card_val,'debug':false});
+					case "selectDate":
+						$(this).snAjax('sendRequest',{'action':'selectDate','debug':false});
 					break;
-					case "afterCheckCard":
+					case "selectDoctor":
+						$(this).snAjax('sendRequest',{'action':'selectDoctor','debug':false});
+					break;
+					case "afterSelectDate":
 						var sn=$(this).data('sn');
-						var rt=false;
-						//$("#bonus-response-outer").show();
 						if (sn.result) {
-							if (sn.result.bonus) {
-								if (sn.result.bonus.exists!=undefined) {
-									$("#bonus-exists").html(sn.result.bonus.exists)
-									$("#bonus-summ").show();
-									$("#bonus-fail").hide();
-									rt=true;
+							if (sn.result.html) {
+								if (sn.result.html.timetable) {
+									$("#content-primary-table").html(sn.result.html.timetable);
 								}
-							}
+							}							
 						}
-						if (!rt) {
-							$("#bonus-summ").hide();
-							$("#bonus-fail").show();
+					break;
+					case "afterSelectDoctor":
+						var sn=$(this).data('sn');
+						if (sn.result) {
+							if (sn.result.html) {
+								if (sn.result.html.timetable) {
+									$("#content-primary-table").html(sn.result.html.timetable);
+								}
+							}							
 						}
-						$("#bonus-response-outer").slideDown();
 					break;
 					case "close":
 						$(this).hide();

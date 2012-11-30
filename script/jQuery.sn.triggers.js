@@ -6,6 +6,18 @@
 			return this.each(function(){
 			});
 		},
+		doctors:function()
+		{
+			th=$(this);
+			sn=$(this).data('sn');
+			
+			$(".content-side-docs-list-link").on("click",function(){
+				$("#value-doctor_id").val($(this).data("doctor_id"));
+				$(".content-side-docs-list-link").removeClass("docs-list-link-active").addClass("docs-list-link-normal");
+				$(this).removeClass("docs-list-link-normal").addClass("docs-list-link-active");
+				th.snEvents({'href':'#selectDoctor'});
+			});
+		},		
 		calendar:function()
 		{
 			th=$(this);
@@ -28,18 +40,16 @@
 				dayNamesShort:['вск','пнд','втр','срд','чтв','птн','сбт'],
 				dayNamesMin:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
 				dayStatus:'DD',dateStatus:'D, M d',
-				dateFormat:'dd-mm-yy',firstDay:1, 
+				dateFormat:'dd.mm.yy',firstDay:1, 
 				initStatus:'',isRTL:false
 			};
 			$.datepicker.setDefaults($.datepicker.regional['ru']);
-			//$("#datepicker").datepicker();			
-			$(function(){
-				$("#datepicker").datepicker({
-					onSelect:function(dateText,inst)
-					{
-						alert(dateText);
-					}
-				});
+			$("#datepicker").datepicker({
+				onSelect:function(dateText,inst)
+				{
+					$("#value-trunc_date").val(dateText);
+					th.snEvents({'href':'#selectDate'});
+				}
 			});
 			
 			

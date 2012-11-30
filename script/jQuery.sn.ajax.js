@@ -12,9 +12,10 @@
 			if (!options) { var options={}; }
 			var def={
 				'type':'json',
-				'debug':false,
 				'action':'build',
-				'card':''
+				'trunc_date':$("#value-trunc_date").val(),
+				'doctor_id':$("#value-doctor_id").val(),
+				'debug':false
 			};
 			$.extend(true,def,options);
 			if (def.debug) { def.type='text'; }
@@ -24,23 +25,23 @@
 				type:'POST',
 				data:{
 					action:def.action,
-					card:def.card,
+					trunc_date:def.trunc_date,
+					doctor_id:def.doctor_id
 				},
 				dataType:def.type,
 				timeout:10000,
 				beforeSend:function(){
-					//$("#status").empty().addClass("loading");
+					$("#status").empty().addClass("loading");
 				},
 				success:function(s){
-					//$.extend(true,sn.result,s);
-					sn.result=s;
+					$.extend(true,sn.result,s);
 					if (def.debug) { alert(s); }
-					//$("#status").empty().removeClass("loading");
+					$("#status").empty().removeClass("loading");
 					$(this).data('sn',sn);
-					//if (sn.result.status) { $("#status").html(sn.result.status); }
-					//if (sn.result.alert) { alert(sn.result.alert); }
+					if (sn.result.status) { $("#status").html(sn.result.status); }
+					if (sn.result.alert) { alert(sn.result.alert); }
 					$(this).snEvents({'href':'#afterCheckCard'});
-					//if (sn.result.callback) { $(this).snEvents({'href':'#'+sn.result.callback}); }
+					if (sn.result.callback) { $(this).snEvents({'href':'#'+sn.result.callback}); }
 				},
 				error:function(XMLHttpRequest,textStatus,error){ 
 					$("#status").html(error).removeClass("loading");

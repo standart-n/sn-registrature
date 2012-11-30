@@ -10,6 +10,7 @@
 					'inputText':'Введите номер карты'
 				},
 				'content':{},
+				'select':{},
 				'result':{}
 			}
 			$.extend(true,def,options);
