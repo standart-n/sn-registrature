@@ -39,8 +39,12 @@
 				<div id="content-side-calendar">
 					<div id="datepicker"></div>
 				</div>
+				<div id="content-side-otdels">
+				</div>
+				<!--
 				<div id="content-side-docs">
 				</div>
+				-->
 			</div>
 			<div id="content-primary">
 				<div id="content-primary-table">

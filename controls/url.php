@@ -3,6 +3,7 @@
 public static $action;
 public static $callback;
 
+public static $otdel_id;
 public static $doctor_id;
 public static $trunc_date;
 
@@ -29,6 +30,13 @@ function __construct() {
 		$dc=trim(strval($_REQUEST["doctor_id"]));
 		if ($dc!="") {
 			self::$doctor_id=$dc;
+		}
+	}
+
+	if (isset($_REQUEST["otdel_id"])) {
+		$do=trim(strval($_REQUEST["otdel_id"]));
+		if ($do!="") {
+			self::$otdel_id=$do;
 		}
 	}
 

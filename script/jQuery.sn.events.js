@@ -12,16 +12,29 @@
 				switch (href.replace(/(.*)#(.*)/,"$2")){
 					case "autoload":
 						var sn=$(this).data('sn');
-						$(this).snTriggers('doctors');
+						$(this).snTriggers('otdels');
 						$(this).snTriggers('calendar');
 					break;
 					case "selectDate":
 						$(this).snAjax('sendRequest',{'action':'selectDate','debug':false});
 					break;
+					case "selectOtdel":
+						$(this).snAjax('sendRequest',{'action':'selectOtdel','debug':false});
+					break;
 					case "selectDoctor":
 						$(this).snAjax('sendRequest',{'action':'selectDoctor','debug':false});
 					break;
 					case "afterSelectDate":
+						var sn=$(this).data('sn');
+						if (sn.result) {
+							if (sn.result.html) {
+								if (sn.result.html.timetable) {
+									$("#content-primary-table").html(sn.result.html.timetable);
+								}
+							}							
+						}
+					break;
+					case "afterSelectOtdel":
 						var sn=$(this).data('sn');
 						if (sn.result) {
 							if (sn.result.html) {

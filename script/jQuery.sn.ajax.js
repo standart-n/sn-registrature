@@ -15,6 +15,7 @@
 				'action':'build',
 				'trunc_date':$("#value-trunc_date").val(),
 				'doctor_id':$("#value-doctor_id").val(),
+				'otdel_id':$("#value-otdel_id").val(),
 				'debug':false
 			};
 			$.extend(true,def,options);
@@ -26,7 +27,8 @@
 				data:{
 					action:def.action,
 					trunc_date:def.trunc_date,
-					doctor_id:def.doctor_id
+					doctor_id:def.doctor_id,
+					otdel_id:def.otdel_id
 				},
 				dataType:def.type,
 				timeout:10000,

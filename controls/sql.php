@@ -17,14 +17,19 @@ function getAllDoctors($s="") {
 	return $s;
 }
 
+function getAllOtdels($s="") {
+	$s.="select ";
+	$s.="do.D\$UUID as ID, ";
+	$s.="do.CAPTION as CAPTION ";
+	$s.="from DOCTORS_OTDEL do ";
+	$s.="where (1=1) ";
+	return $s;
+}
+
 function getTimetable($ms=array(),$s="") {
 	$s.="select ";
-	$s.="rg.D\$UUID as ID, ";
-	$s.="rg.DOCTOR_ID as DOCTOR_ID, ";
-	$s.="rg.TRUNC_DATE as TRUNC_DATE, ";
-	$s.="rg.TRUNC_TIME as TRUNC_TIME, ";
-	$s.="rg.SSTATUS as SSTATUS, ";
-	$s.="rg.STATUS as STATUS ";
+	$s.="count(rg.D\$UUID) as COUNT_ID, ";
+	$s.="rg.TRUNC_TIME as TRUNC_TIME ";
 	$s.="from VW_REGISTRY rg ";
 	$s.="where (1=1) ";
 	$s.="and (rg.STATUS=0) ";
@@ -33,8 +38,16 @@ function getTimetable($ms=array(),$s="") {
 			$s.="and (rg.DOCTOR_ID='".$ms['doc']."') ";
 		}
 	}
+	if (isset($ms['otdel'])) {
+		if ($ms['otdel']!="all") {
+			$s.="and (rg.OTDEL_ID='".$ms['otdel']."') ";
+		}
+	}
 	if (isset($ms['dt'])) {
 		$s.="and (rg.TRUNC_DATE='".$ms['dt']."') ";
+	}
+	if (isset($ms['otdel'])) {
+		$s.="GROUP by rg.TRUNC_TIME ";
 	}
 	$s.="order by rg.TRUNC_TIME asc";
 	return $s;

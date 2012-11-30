@@ -11,13 +11,11 @@ function __construct() {
 function getDoctors($docs=array(),$i=-1) {
 	if (query(sql::getAllDoctors(),$ms)) {
 		foreach ($ms as $r) { $i++;
-			if (isset($r->ID)) {
-				if ($i==0) {				
-					self::$first_doctor_id=$r->ID;
-				}
-				$docs[$i]['id']=$r->ID;
-				$docs[$i]['caption']=toUTF(self::editFamily($r->CAPTION));
+			if ($i==0) {				
+				self::$first_doctor_id=$r->ID;
 			}
+			$docs[$i]['id']=$r->ID;
+			$docs[$i]['caption']=toUTF(self::editFamily($r->CAPTION));
 		}
 	}
 	self::$docs=$docs;

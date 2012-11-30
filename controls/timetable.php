@@ -1,12 +1,14 @@
 <?php class timetable extends sn {
 	
 public static $doctor_id;
+public static $otdel_id;
 public static $trunc_date;
 public static $times;
 public static $timetable_html;
 
 function __construct() {
 	self::$doctor_id="all";
+	self::$otdel_id="all";
 	self::$trunc_date=date('d.m.Y');
 }
 
@@ -14,10 +16,21 @@ function getParamsFromUrl() {
 	if (isset(url::$doctor_id)) {
 		self::$doctor_id=url::$doctor_id;
 	}
+	if (isset(url::$otdel_id)) {
+		self::$otdel_id=url::$otdel_id;
+	}
 	if (isset(url::$trunc_date)) {
 		self::$trunc_date=url::$trunc_date;
 	}
 	
+}
+
+function getFirstOtdelId() {
+	if (self::$otdel_id=="all") {
+		if (isset(otdels::$first_otdel_id)) {
+			self::$otdel_id=otdels::$first_otdel_id;
+		}
+	}
 }
 
 function getFirstDoctorId() {
@@ -30,14 +43,13 @@ function getFirstDoctorId() {
 
 function getTimetable($times=array(),$i=-1) {
 	self::getParamsFromUrl();
-	self::getFirstDoctorId();
-	if (query(sql::getTimetable(array("dt"=>self::$trunc_date,"doc"=>self::$doctor_id)),$ms)) {
+	self::getFirstOtdelId();
+	if (query(sql::getTimetable(array("dt"=>self::$trunc_date,"otdel"=>self::$otdel_id)),$ms)) {
 		foreach ($ms as $r) { $i++;
-			if (isset($r->ID)) {
-				$tm=self::editTime($r->TRUNC_TIME);
-				$times[$i]['time']=$tm['t'];
-				$times[$i]['sstatus']=toUTF($r->SSTATUS);
-			}
+			$tm=self::editTime($r->TRUNC_TIME);
+			$times[$i]['count']=$r->COUNT_ID;
+			$times[$i]['time']=$tm['t'];
+			//$times[$i]['sstatus']=toUTF($r->SSTATUS);
 		}
 	}
 	self::$times=$times;
@@ -45,6 +57,7 @@ function getTimetable($times=array(),$i=-1) {
 
 function fetchTimetableToHtml() {
 	assign('times',self::$times);
+	assign('otdel_id',self::$otdel_id);
 	assign('doctor_id',self::$doctor_id);
 	assign('trunc_date',self::$trunc_date);
 	self::$timetable_html=fetch("table.tpl");

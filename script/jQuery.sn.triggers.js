@@ -18,6 +18,18 @@
 				th.snEvents({'href':'#selectDoctor'});
 			});
 		},		
+		otdels:function()
+		{
+			th=$(this);
+			sn=$(this).data('sn');
+			
+			$(".content-side-otdels-list-link").on("click",function(){
+				$("#value-otdels_id").val($(this).data("otdel_id"));
+				$(".content-side-otdels-list-link").removeClass("otdels-list-link-active").addClass("otdels-list-link-normal");
+				$(this).removeClass("otdels-list-link-normal").addClass("otdels-list-link-active");
+				th.snEvents({'href':'#selectOtdel'});
+			});
+		},		
 		calendar:function()
 		{
 			th=$(this);

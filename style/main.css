@@ -85,10 +85,15 @@ width:217px;
 height:auto;
 margin:10px 0 0 0;
 padding:0 0 10px 0;
-/*border:#eee solid 1px;
--moz-border-radius:3px;
--webkit-border-radius:3px;
-border-radius:3px;*/
+}
+
+div#content-side-otdels {
+display:block;
+float:left;
+width:217px;
+height:auto;
+margin:10px 0 0 0;
+padding:0 0 10px 0;
 }
 
 div#content-primary-table {
@@ -172,6 +177,59 @@ text-decoration:none;
 color:#333;
 text-decoration:none;
 }
+
+
+
+
+div#content-side-otdels h3 {
+font-family:Verdana;
+font-size:18px;
+color:#333;
+margin:5px 0 0 0;
+padding:0 0 0 10px;
+}
+
+div#content-side-otdels-list {
+display:block;
+float:left;
+margin:5px 0 0 5px;
+}
+
+
+.content-side-otdels-list-link {
+font-family:Verdana;
+font-size:14px;
+display:block;
+float:left;
+clear:both;
+margin:10px 0 0 0;
+padding:0 0 0 5px;
+}
+
+
+.otdels-list-link-normal:hover {
+color:#ff0000;
+text-decoration:none;
+}
+
+.otdels-list-link-normal {
+color:#024;
+text-decoration:none;
+}
+
+.otdels-list-link-active:hover {
+color:#333;
+text-decoration:none;
+}
+
+.otdels-list-link-active {
+color:#333;
+text-decoration:none;
+}
+
+
+
+
 
 
 
